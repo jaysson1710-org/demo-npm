@@ -6,13 +6,19 @@ name: Node.js Package
 on: workflow_dispatch
 
 jobs:
+  
   build:
     runs-on: ubuntu-latest
+    permissions:
+      packages: read
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - run: |
+          npm i npm-cli-login
+          npm-cli-login -u jaysson1710 -p ${{ secrets.GITHUB_TOKEN }} -e "jaysson1710@gmail.com" -s "jaysson1710-org" -r "https://npm.pkg.github.com"
       - run: npm install
       - run: npm ci
 
