@@ -16,11 +16,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      
-      - uses: actions/npm-auth@v1
-        with:
-          registry-url: 'https://npm.pkg.github.com'
+     
       - run: |
+          echo "@jaysson1710-org:registry=https://npm.pkg.github.com" > "~/.npmrc"
           npm i -g npm-cli-login
           npm-cli-login -u jaysson1710 -p ${{ secrets.GITHUB_TOKEN }} -e "jaysson1710@gmail.com" -s "jaysson1710-org" -r "https://npm.pkg.github.com"
       - run: npm install
