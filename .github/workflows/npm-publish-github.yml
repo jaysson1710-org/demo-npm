@@ -31,7 +31,7 @@ jobs:
       - name: NPM Login
         uses: Smaiil/npm-login@v1.0.2
         with:
-          scope: $ORG_NAME
+          scope: "${{ env.ORG_NAME }}"
           registry: "https://npm.pkg.github.com"
           token: ${{ secrets.GITHUB_TOKEN }}
           
