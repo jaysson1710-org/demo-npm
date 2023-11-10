@@ -26,7 +26,6 @@ jobs:
         # uses: Smaiil/npm-login@9979adf64b541478ac09a799e6f53d6c592c6f77
       - name: Set env
         run: echo ::set-env name=LOCAL_ORG::@${{ env.ORG }}
-        
       - uses: Smaiil/npm-login@v1.0.2
         with:
           scope: $LOCAL_ORG
