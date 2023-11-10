@@ -27,7 +27,7 @@ jobs:
       - name: Set env
         run: echo ::set-env name=LOCAL_ORG::@${{ env.ORG }}
         
-        uses: Smaiil/npm-login@v1.0.2
+      - uses: Smaiil/npm-login@v1.0.2
         with:
           scope: $LOCAL_ORG
           registry: "https://npm.pkg.github.com"
