@@ -24,12 +24,15 @@ jobs:
       - name: NPM Login
         # You may pin to the exact commit or the version.
         # uses: Smaiil/npm-login@9979adf64b541478ac09a799e6f53d6c592c6f77
+      - name: Set env
+        run: echo ::set-env name=LOCAL_ORG::@${{ env.ORG }}
+        
         uses: Smaiil/npm-login@v1.0.2
         with:
-          scope: "@${{ env:ORG }}"
+          scope: $LOCAL_ORG
           registry: "https://npm.pkg.github.com"
           token: ${{ secrets.GITHUB_TOKEN }}
-          
+        
       
       - run: npm install
       - run: npm ci
@@ -44,7 +47,7 @@ jobs:
         with:
           node-version: 16
       - run: |
-          echo ""@${{ env:ORG }}":registry=https://npm.pkg.github.com" > .npmrc
+          echo "@${{ env:ORG }}":registry=https://npm.pkg.github.com" > .npmrc
           npm i -g npm-cli-login
           npm-cli-login -u $USER -p ${{ secrets.GITHUB_TOKEN }} -e $EMAIL -s $ORG -r "https://npm.pkg.github.com"
       
