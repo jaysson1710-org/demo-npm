@@ -28,7 +28,7 @@ jobs:
       - name: NPM Login
         uses: Smaiil/npm-login@v1.0.2
         with:
-          scope: $STEPVAR
+          scope: "@jaysson1710-org"
           registry: "https://npm.pkg.github.com"
           token: ${{ secrets.GITHUB_TOKEN }}
           
