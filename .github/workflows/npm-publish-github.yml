@@ -5,6 +5,11 @@ name: Node.js Package
 
 on: workflow_dispatch
 
+env:
+  ORG: "jaysson1710-org"
+  EMAIL: "jaysson1710@gmail.com"
+  USER: "jaysson1710"
+
 jobs:
   
   build:
@@ -21,10 +26,27 @@ jobs:
         # uses: Smaiil/npm-login@9979adf64b541478ac09a799e6f53d6c592c6f77
         uses: Smaiil/npm-login@v1.0.2
         with:
-          scope: "@jaysson1710-org"
+          scope: "@$ORG"
           registry: "https://npm.pkg.github.com"
           token: ${{ secrets.GITHUB_TOKEN }}
           
+      
+      - run: npm install
+      - run: npm ci
+
+  build_opt_2:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: |
+          echo "@$ORG:registry=https://npm.pkg.github.com" > .npmrc
+          npm i -g npm-cli-login
+          npm-cli-login -u $USER -p ${{ secrets.GITHUB_TOKEN }} -e $EMAIL -s $ORG -r "https://npm.pkg.github.com"
       
       - run: npm install
       - run: npm ci
