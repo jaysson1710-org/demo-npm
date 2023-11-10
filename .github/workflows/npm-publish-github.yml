@@ -24,11 +24,14 @@ jobs:
           node-version: 16
       - name: Set env
         run: echo ::set-env name=STEPVAR::@${{ env.ORG }}
+
+      - name: Set the environment variable
+        run: echo ORG_NAME="@${{ env.ORG }}" >> $GITHUB_ENV
       
       - name: NPM Login
         uses: Smaiil/npm-login@v1.0.2
         with:
-          scope: "@jaysson1710-org"
+          scope: $ORG_NAME
           registry: "https://npm.pkg.github.com"
           token: ${{ secrets.GITHUB_TOKEN }}
           
