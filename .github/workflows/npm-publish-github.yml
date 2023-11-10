@@ -44,7 +44,7 @@ jobs:
         with:
           node-version: 16
       - run: |
-          echo "@${{ env:ORG }}:registry=https://npm.pkg.github.com" > .npmrc
+          echo @${{ env:ORG }}:registry=https://npm.pkg.github.com > .npmrc
           npm i -g npm-cli-login
           npm-cli-login -u $USER -p ${{ secrets.GITHUB_TOKEN }} -e $EMAIL -s $ORG -r "https://npm.pkg.github.com"
       
