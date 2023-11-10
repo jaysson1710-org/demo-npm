@@ -6,6 +6,7 @@ name: Node.js Package
 on: workflow_dispatch
 
 env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
   ORG: "jaysson1710-org"
   EMAIL: "jaysson1710@gmail.com"
   USER: "jaysson1710"
